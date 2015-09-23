@@ -1,5 +1,6 @@
 function ListBuyController($scope) {
 
+    $scope.inputfield = {};
     $scope.item = {};
 
     $scope.items = [
@@ -8,20 +9,20 @@ function ListBuyController($scope) {
     ];
 
     $scope.addItem = function () {
-        $scope.items.push({product: $scope.item.product, quantity: $scope.item.quantity, buy: false});
+        $scope.items.push({product: $scope.inputfield.productItem, quantity: $scope.inputfield.quantityItem, buy: false});
         $scope.productItem = $scope.quantityItem = '';
     };
 
     $scope.editItem = function(index){
         $scope.itemId = index;
-        $scope.productItem = $scope.items[index].product;
-        $scope.quantityItem = $scope.items[index].quantity;
+        $scope.inputfield.productItem = $scope.items[index].product;
+        $scope.inputfield.quantityItem = $scope.items[index].quantity;
         $scope.edit = true;
     };
 
     $scope.applyChanges = function(index){
-        $scope.items[$scope.itemId].product = $scope.productItem;
-        $scope.items[$scope.itemId].quantity = $scope.quantityItem;      
+        $scope.items[$scope.itemId].product = $scope.inputfield.productItem;
+        $scope.items[$scope.itemId].quantity = $scope.inputfield.quantityItem;      
 
         $scope.clearItemEntry();
     };
@@ -35,8 +36,7 @@ function ListBuyController($scope) {
     };
 
     $scope.clearItemEntry = function() {
-        $scope.productItem = '';
-        $scope.quantityItem = '';
+        $scope.inputfield = {};
         $scope.edit = false;
     }
 };
