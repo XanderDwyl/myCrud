@@ -1,0 +1,65 @@
+<!doctype html>
+<html ng-app>
+<head>
+  <title>Simple List AngularJS</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/list-order.css">
+  <script src="lib/angular-1.0.1.js"></script>
+  <script src="app/list-order.js"></script>
+</head>
+<body>
+  <div class="container" ng-controller="ListBuyController">
+   <div class="row">
+    <div class="page-header">
+      <div class="span9">
+        <h1>Product Inventory List</h1>
+      </div>
+      <div class="span3">
+        <input type="search" ng-model="search" placeholder="search product...">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <table id="list-order" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Buy</th>
+          <th>Product</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in items | filter:search" class="buy-{{ item.buy }}">
+          <td><input type="checkbox" ng-model="item.buy"></td>
+          <td><strong>{{ item.product }}</strong></td>
+          <td>{{ item.quantity }}</td>
+          <td>
+            <button class="btn btn-warning -small" ng-click="editItem($index)">
+              <i class="icon-pencil icon-white"></i> Edit
+            </button>
+            <button class="btn btn-danger btn-small" ng-click="deleteItem($index)">
+              <i class="icon-trash icon-white"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row form-inline">
+    <input type="hidden" ng-model="itemId">
+    <input type="text" ng-model="productItem" placeholder="Product">
+    <input type="number" ng-model="quantityItem" placeholder="Quantity" class="input-small">
+    <button ng-hide="edit" class="btn btn-success" ng-click="addItem()">
+      <i class="icon-plus icon-white"></i> Add
+    </button>
+    <button ng-show="edit" class="btn btn-warning" ng-click="cancel()">
+      <i class="icon-remove icon-white"></i> Cancel
+    </button>
+    <button ng-show="edit" class="btn btn-success" ng-click="applyChanges()">
+      <i class="icon-ok icon-white"></i> Save
+    </button>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+#list-order td, #list-order th {
+	text-align: center;
+}
+.buy-true {
+	border-left:4px solid #FF0000 !important;
+}
+.buy-true td {
+	background: #F7E5E5 !important;
+}
+.page-header {
+    padding-bottom: 50px;
+}
